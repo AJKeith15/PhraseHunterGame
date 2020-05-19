@@ -32,6 +32,7 @@ class Game {
     // handleInteraction takes the guessed button and checks if it part of the phrase by calling the checkLetter method of the Phrase class
     // if the guess is correct, the showMatchedLetter method is called and then the checkForWin method is called. If it is a win, the win screen is shown.
     // if the guess is wrong, the removeLife method is called
+    // the button is then disabled
     handleInteraction(button) {
         let letter = button.textContent
         if (this.activePhrase.checkLetter(letter)) {
@@ -44,6 +45,7 @@ class Game {
             button.classList.add('wrong')
             this.removeLife()
         }
+        button.disabled = true
     }
 
     // removeLife creates an array of the remaining lives, then sets the first index in the array to the lost life image
@@ -67,7 +69,7 @@ class Game {
         let overlay = document.getElementById('overlay')
         overlay.style.display = 'inherit'
         if (reason === 'win') {
-            document.getElementById('game-over-message').textContent = 'You win!'
+            document.getElementById('game-over-message').textContent = `You win! The phrase was "${this.activePhrase.phrase}"!`
             overlay.className = reason
         } else {
             // when the game is lost, the phrase is revealed to the user

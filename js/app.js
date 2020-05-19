@@ -39,6 +39,7 @@ document.addEventListener('keydown', (e) => {
                 button = html
             }
         }
+
         // the html element is checked to see if it has already been guessed (has either 'wrong' or 'chosen' class on it)
         if (!button.classList.contains('wrong') && !button.classList.contains('chosen')) {
             // if the button has not been guessed, then the handleInteraction method is called
@@ -61,6 +62,7 @@ function resetGame() {
     let keyArr = document.getElementsByClassName('key')
     for (let key of keyArr) {
         key.className = 'key'
+        key.disabled = false
     }
 
     // The lost lives are put into an array and looped through to change them back to full hearts
